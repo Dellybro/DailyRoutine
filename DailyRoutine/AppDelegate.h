@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "CustomLayout.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -19,6 +20,16 @@
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
+
+
+//CoreDataAbove
+
+@property(nonatomic, readonly) UICollectionViewLayout *collectionViewLayout;
+-(void)setupRoot;
+
+@property (nonatomic) NSMutableArray *data;
+@property (nonatomic) NSMutableArray *headers;
+-(void)setupData;
 
 
 @end

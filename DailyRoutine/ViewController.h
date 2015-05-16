@@ -7,9 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HeaderView.h"
+#import "CustomCell.h"
+#import "AppDelegate.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UICollectionViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate>
 
+@property (nonatomic, retain) UIBarButtonItem *addSectionButton;
+@property (nonatomic, retain) UIBarButtonItem *deleteSectionButton;
+
+-(void)addSection:(id)sender;
+-(void)deleteSection:(id)sender;
+
+@property (nonatomic, assign) BOOL useHeader;
+@property (nonatomic, assign) BOOL useFooter;
+
+@property (nonatomic, assign) NSInteger numberOfSection;
+
+@property (nonatomic, assign) NSInteger NumberofItems;
 
 @end
 

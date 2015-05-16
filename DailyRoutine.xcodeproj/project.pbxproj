@@ -11,10 +11,13 @@
 		9D7C222D1B0442B900518E33 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D7C222C1B0442B900518E33 /* AppDelegate.m */; };
 		9D7C22301B0442B900518E33 /* DailyRoutine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9D7C222E1B0442B900518E33 /* DailyRoutine.xcdatamodeld */; };
 		9D7C22331B0442B900518E33 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D7C22321B0442B900518E33 /* ViewController.m */; };
-		9D7C22361B0442B900518E33 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D7C22341B0442B900518E33 /* Main.storyboard */; };
 		9D7C22381B0442B900518E33 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D7C22371B0442B900518E33 /* Images.xcassets */; };
 		9D7C223B1B0442B900518E33 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D7C22391B0442B900518E33 /* LaunchScreen.xib */; };
 		9D7C22471B0442B900518E33 /* DailyRoutineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D7C22461B0442B900518E33 /* DailyRoutineTests.m */; };
+		9D7ED6FC1B0663F400B39732 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D7ED6FB1B0663F400B39732 /* CustomCell.m */; };
+		9D7ED6FF1B066C9600B39732 /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D7ED6FE1B066C9600B39732 /* HeaderView.m */; };
+		9D7ED7041B06829B00B39732 /* CustomLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D7ED7031B06829B00B39732 /* CustomLayout.m */; };
+		9D7ED7161B07001700B39732 /* EditCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D7ED7151B07001700B39732 /* EditCellViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,12 +39,19 @@
 		9D7C222F1B0442B900518E33 /* DailyRoutine.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DailyRoutine.xcdatamodel; sourceTree = "<group>"; };
 		9D7C22311B0442B900518E33 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		9D7C22321B0442B900518E33 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		9D7C22351B0442B900518E33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9D7C22371B0442B900518E33 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9D7C223A1B0442B900518E33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		9D7C22401B0442B900518E33 /* DailyRoutineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DailyRoutineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D7C22451B0442B900518E33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9D7C22461B0442B900518E33 /* DailyRoutineTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DailyRoutineTests.m; sourceTree = "<group>"; };
+		9D7ED6FA1B0663F400B39732 /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
+		9D7ED6FB1B0663F400B39732 /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
+		9D7ED6FD1B066C9600B39732 /* HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderView.h; sourceTree = "<group>"; };
+		9D7ED6FE1B066C9600B39732 /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderView.m; sourceTree = "<group>"; };
+		9D7ED7021B06829B00B39732 /* CustomLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLayout.h; sourceTree = "<group>"; };
+		9D7ED7031B06829B00B39732 /* CustomLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLayout.m; sourceTree = "<group>"; };
+		9D7ED7141B07001700B39732 /* EditCellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditCellViewController.h; sourceTree = "<group>"; };
+		9D7ED7151B07001700B39732 /* EditCellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditCellViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,11 +93,10 @@
 		9D7C22261B0442B800518E33 /* DailyRoutine */ = {
 			isa = PBXGroup;
 			children = (
+				9D7ED7011B06823D00B39732 /* MainControl */,
+				9D7ED7001B06822B00B39732 /* CustomViews */,
 				9D7C222B1B0442B900518E33 /* AppDelegate.h */,
 				9D7C222C1B0442B900518E33 /* AppDelegate.m */,
-				9D7C22311B0442B900518E33 /* ViewController.h */,
-				9D7C22321B0442B900518E33 /* ViewController.m */,
-				9D7C22341B0442B900518E33 /* Main.storyboard */,
 				9D7C22371B0442B900518E33 /* Images.xcassets */,
 				9D7C22391B0442B900518E33 /* LaunchScreen.xib */,
 				9D7C222E1B0442B900518E33 /* DailyRoutine.xcdatamodeld */,
@@ -120,6 +129,30 @@
 				9D7C22451B0442B900518E33 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9D7ED7001B06822B00B39732 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				9D7ED6FA1B0663F400B39732 /* CustomCell.h */,
+				9D7ED6FB1B0663F400B39732 /* CustomCell.m */,
+				9D7ED6FD1B066C9600B39732 /* HeaderView.h */,
+				9D7ED6FE1B066C9600B39732 /* HeaderView.m */,
+				9D7ED7021B06829B00B39732 /* CustomLayout.h */,
+				9D7ED7031B06829B00B39732 /* CustomLayout.m */,
+			);
+			name = CustomViews;
+			sourceTree = "<group>";
+		};
+		9D7ED7011B06823D00B39732 /* MainControl */ = {
+			isa = PBXGroup;
+			children = (
+				9D7C22311B0442B900518E33 /* ViewController.h */,
+				9D7C22321B0442B900518E33 /* ViewController.m */,
+				9D7ED7141B07001700B39732 /* EditCellViewController.h */,
+				9D7ED7151B07001700B39732 /* EditCellViewController.m */,
+			);
+			name = MainControl;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,7 +235,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9D7C22361B0442B900518E33 /* Main.storyboard in Resources */,
 				9D7C223B1B0442B900518E33 /* LaunchScreen.xib in Resources */,
 				9D7C22381B0442B900518E33 /* Images.xcassets in Resources */,
 			);
@@ -222,10 +254,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D7ED7161B07001700B39732 /* EditCellViewController.m in Sources */,
 				9D7C22301B0442B900518E33 /* DailyRoutine.xcdatamodeld in Sources */,
+				9D7ED6FF1B066C9600B39732 /* HeaderView.m in Sources */,
 				9D7C222D1B0442B900518E33 /* AppDelegate.m in Sources */,
 				9D7C22331B0442B900518E33 /* ViewController.m in Sources */,
+				9D7ED7041B06829B00B39732 /* CustomLayout.m in Sources */,
 				9D7C222A1B0442B800518E33 /* main.m in Sources */,
+				9D7ED6FC1B0663F400B39732 /* CustomCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,14 +284,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		9D7C22341B0442B900518E33 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9D7C22351B0442B900518E33 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		9D7C22391B0442B900518E33 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -422,6 +450,7 @@
 				9D7C224C1B0442B900518E33 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9D7C224D1B0442B900518E33 /* Build configuration list for PBXNativeTarget "DailyRoutineTests" */ = {
 			isa = XCConfigurationList;
@@ -430,6 +459,7 @@
 				9D7C224F1B0442B900518E33 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

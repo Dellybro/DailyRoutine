@@ -8,14 +8,66 @@
 
 #import "AppDelegate.h"
 
+#import "ViewController.h"
+
 @interface AppDelegate ()
+@property (nonatomic) UINavigationController* navigationController;
+@property ViewController *rootViewController;
 
 @end
 
+
 @implementation AppDelegate
+
+-(void)setupData{
+    NSMutableArray *sectionFood = [[NSMutableArray alloc] initWithObjects:@"lunch - noodle", @"breakfast - eggs", @"dinner - pizza", @"snack - pasta", @"fatass - hamburgers", nil];
+    NSMutableArray *sectionDog = [[NSMutableArray alloc] initWithObjects:@"poop", @"park", @"food", @"park", @"food", @"park", nil];
+    NSMutableArray *sectionRappers = [[NSMutableArray alloc] initWithObjects:@"Lil wayne", @"RLGrime", @"Juicy J", @"MGK", @"Dr dre", @"Drake", nil];
+    
+    _data = [[NSMutableArray alloc] init];
+    
+    [_data addObject:sectionFood];
+    [_data addObject:sectionDog];
+    [_data addObject:sectionRappers];
+    
+    _headers = [[NSMutableArray alloc] init];
+    
+    [_headers addObject:@"Daily Food Intake"];
+    [_headers addObject:@"Daily Dog Duties"];
+    [_headers addObject:@"Daily Music Lineup"];
+    
+    
+}
+-(void)setupRoot{
+                                 
+
+    
+    CustomLayout *layout = [[CustomLayout alloc] init];
+    
+    _rootViewController = [[ViewController alloc] initWithCollectionViewLayout:layout];
+
+    
+    
+    //Using NsUserDefaults Set this to initial defualts.
+    
+    _rootViewController.numberOfSection = 1;
+    _rootViewController.NumberofItems = 10;
+    
+    _navigationController = [[UINavigationController alloc] initWithRootViewController:_rootViewController];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    [self.window setRootViewController:_navigationController];
+    [_navigationController popToRootViewControllerAnimated:YES];
+}
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    [self setupData];
+    [self setupRoot];
+    [self.window makeKeyAndVisible];
+    
     // Override point for customization after application launch.
     return YES;
 }
