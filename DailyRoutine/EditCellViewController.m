@@ -18,9 +18,26 @@
 @implementation EditCellViewController
 
 -(void) saveChanges:(UIButton*)sender{
-    [[_sharedDelegate.data objectAtIndex:_sectionPath] replaceObjectAtIndex:_rowPath withObject:_message.text];
     
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    if(_message.text.length > 0){
+        [[_sharedDelegate.data objectAtIndex:_sectionPath] replaceObjectAtIndex:_rowPath withObject:_message.text];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    } else {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Alert!" message:@"About to update with null" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *Cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            nil;
+        }];
+        UIAlertAction *OK = [UIAlertAction actionWithTitle:@"OK!" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [[_sharedDelegate.data objectAtIndex:_sectionPath] replaceObjectAtIndex:_rowPath withObject:_message.text];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }];
+        
+        [alert addAction:OK];
+        [alert addAction:Cancel];
+        [self.navigationController presentViewController:alert animated:YES completion:nil];
+    }
+    
     
     
 }
