@@ -9,6 +9,13 @@
 #import "ViewController.h"
 #import "EditCellViewController.h"
 
+
+//For antimation this is considered a Macro
+//Macros are good for one like instance codes.
+//I call this in my function by typing RADIANS(-5) as if i was passing in a parameter
+//Can not put double into RADIANS macro.
+#define RADIANS(degrees) ((degrees * M_PI) / 180)
+
 @interface ViewController ()
 @property (nonatomic, retain) UIBarButtonItem *AddItemButton;
 @property AppDelegate *sharedDelegate;
@@ -19,10 +26,46 @@
 -(void)deleteHighLightedItem:(UIBarButtonItem*)sender;
 -(void)addItemsToSectionAtIndexPath:(UIButton*) sender;
 
+-(void)startWobble:(NSIndexPath*)index;
+-(void)stopWobble:(NSIndexPath*)index;
 
 @end
 
 @implementation ViewController
+
+-(void)startWobble:(NSIndexPath*)index{
+    UICollectionViewCell *cellToAnimate = [self.collectionView cellForItemAtIndexPath:index];
+    
+    cellToAnimate.transform = CGAffineTransformRotate(CGAffineTransformIdentity, RADIANS(20));
+    
+    //Algorithm for wobble -> get item -> if you need inital position transform item else ->
+    //Make new UIView animateWithDuration -> insert item
+    
+    //StopWobble -> get item -> UIViewAnimationWithDuration -> input item -> make sure to send to
+    //initial position UIViewAnimationOptionAllowUserInteraction |UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveLinear;
+    
+    [UIView animateWithDuration:0.25
+                          delay:0.0
+                        options:(UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse)
+                     animations:^ {
+                         cellToAnimate.transform = CGAffineTransformRotate(CGAffineTransformIdentity, RADIANS(-20));
+                     }
+                     completion:NULL
+     ];
+}
+
+-(void)stopWobble:(NSIndexPath *)index{
+    UICollectionViewCell *cellToAnimate = [self.collectionView cellForItemAtIndexPath:index];
+    
+    [UIView animateWithDuration:0.25
+                          delay:0.0
+                        options:(UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveLinear)
+                     animations:^ {
+                         cellToAnimate.transform = CGAffineTransformIdentity;
+                     }
+                     completion:NULL
+     ];
+}
 
 -(void)processDoubleTap:(UITapGestureRecognizer *)sender{
     
@@ -131,12 +174,14 @@
     //If Kind is HEADER
     if(kind == UICollectionElementKindSectionHeader){
         HeaderView *header = [self.collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header" forIndexPath:indexPath];
-        //header.backgroundColor = [UIColor blackColor];
+        
+        header.title.delegate = self;
         
         header.title.tag = indexPath.section;
         
         NSString *text = [NSString stringWithFormat:@"%@", _sharedDelegate.headers[header.title.tag]];
         header.title.text = text;
+        
         return header;
     }//ELSE IF KIND IS FOOTER
     else if (kind == UICollectionElementKindSectionFooter){
@@ -158,12 +203,14 @@
     self.navigationItem.rightBarButtonItem = _deleteItemButton;
     self.navigationItem.leftBarButtonItem = _AddItemButton;
     
+    [self startWobble:indexPath];
+    
     //NSLog(@"Selected %@", indexPath);
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    //NSLog(@"Deselected %@", indexPath);
+    [self stopWobble:indexPath];
 }
 #pragma setup
 

@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+
+
 #import "HeaderView.h"
 #import "CustomCell.h"
 #import "AppDelegate.h"
 
-@interface ViewController : UICollectionViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate>
+@interface ViewController : UICollectionViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UITextFieldDelegate>
 
 @property (nonatomic, retain) UIBarButtonItem *addSectionButton;
 @property (nonatomic, retain) UIBarButtonItem *deleteSectionButton;
