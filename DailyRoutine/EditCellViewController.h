@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
+#import "ViewController.h"
 
 @interface EditCellViewController : UIViewController
 
@@ -19,5 +20,6 @@
 
 @property (nonatomic) UIButton *submit;
 @property (nonatomic) UITextField *message;
+@property (nonatomic, weak) ViewController *presenter;
 
 @end

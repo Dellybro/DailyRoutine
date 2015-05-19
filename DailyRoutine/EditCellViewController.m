@@ -19,9 +19,10 @@
 
 -(void) saveChanges:(UIButton*)sender{
     
-    if(_message.text.length > 0){
+    if(_message.text.length > 0){        
         [[_sharedDelegate.data objectAtIndex:_sectionPath] replaceObjectAtIndex:_rowPath withObject:_message.text];
         [self.navigationController popToRootViewControllerAnimated:YES];
+        
     } else {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Alert!" message:@"About to update with null" preferredStyle:UIAlertControllerStyleAlert];
         
@@ -66,7 +67,6 @@
     _message.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     _message.textAlignment = NSTextAlignmentCenter;
     _message.placeholder = @"Fill in new message here";
-//    UIColor *color = [UIColor grayColor];
 //    _message.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"" attributes:@{NSForegroundColorAttributeName: color}];
 
 
@@ -77,13 +77,9 @@
     titleLabel.text = messages;
     
     
-    
-    
-//
     [self.view addSubview:titleLabel];
     [self.view addSubview:_message];
     [self.view addSubview:_submit];
-//    
     self.navigationItem.title = @"Edit Cell";
     
 }

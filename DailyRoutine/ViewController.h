@@ -14,9 +14,9 @@
 #import "AppDelegate.h"
 
 @interface ViewController : UICollectionViewController <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UITextFieldDelegate>
-
-@property (nonatomic, retain) UIBarButtonItem *addSectionButton;
-@property (nonatomic, retain) UIBarButtonItem *deleteSectionButton;
+@property (nonatomic, strong) NSMutableArray *cellsToAnimate;
+@property (nonatomic, strong) UIBarButtonItem *addSectionButton;
+@property (nonatomic, strong) UIBarButtonItem *deleteSectionButton;
 
 -(void)addSection:(id)sender;
 -(void)deleteSection:(id)sender;

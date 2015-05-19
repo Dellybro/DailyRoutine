@@ -33,40 +33,6 @@
 
 @implementation ViewController
 
--(void)startWobble:(NSIndexPath*)index{
-    UICollectionViewCell *cellToAnimate = [self.collectionView cellForItemAtIndexPath:index];
-    
-    cellToAnimate.transform = CGAffineTransformRotate(CGAffineTransformIdentity, RADIANS(20));
-    
-    //Algorithm for wobble -> get item -> if you need inital position transform item else ->
-    //Make new UIView animateWithDuration -> insert item
-    
-    //StopWobble -> get item -> UIViewAnimationWithDuration -> input item -> make sure to send to
-    //initial position UIViewAnimationOptionAllowUserInteraction |UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveLinear;
-    
-    [UIView animateWithDuration:0.25
-                          delay:0.0
-                        options:(UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse)
-                     animations:^ {
-                         cellToAnimate.transform = CGAffineTransformRotate(CGAffineTransformIdentity, RADIANS(-20));
-                     }
-                     completion:NULL
-     ];
-}
-
--(void)stopWobble:(NSIndexPath *)index{
-    UICollectionViewCell *cellToAnimate = [self.collectionView cellForItemAtIndexPath:index];
-    
-    [UIView animateWithDuration:0.25
-                          delay:0.0
-                        options:(UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveLinear)
-                     animations:^ {
-                         cellToAnimate.transform = CGAffineTransformIdentity;
-                     }
-                     completion:NULL
-     ];
-}
-
 -(void)processDoubleTap:(UITapGestureRecognizer *)sender{
     
     NSArray *Section = [self.collectionView indexPathsForSelectedItems];
@@ -81,7 +47,7 @@
         
         editCell.rowPath = itemRow;
         editCell.sectionPath = itemSection;
-        
+        editCell.presenter = self;
         [self.navigationController showViewController:editCell sender:self];
         
         NSLog(@"Gesture Recognized");
@@ -219,6 +185,7 @@
     self.navigationItem.leftBarButtonItem = _addSectionButton;
     self.navigationItem.rightBarButtonItem = _deleteSectionButton;
 }
+
 -(void)viewDidLoad{
     [super viewDidLoad];
     _sharedDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -228,24 +195,20 @@
     _addSectionButton = [[UIBarButtonItem alloc]initWithTitle:@"Add Section" style:UIBarButtonItemStylePlain target:self action:@selector(addSection:)];
     _deleteSectionButton = [[UIBarButtonItem alloc]initWithTitle:@"Delete Section" style:UIBarButtonItemStylePlain target:self action:@selector(deleteSection:)];
     
-    self.navigationItem.leftBarButtonItem = _addSectionButton;
-    self.navigationItem.rightBarButtonItem = _deleteSectionButton;
-    
     
     [self.collectionView registerClass:[CustomCell class] forCellWithReuseIdentifier:@"cell"];
     
     [self.collectionView registerClass:[HeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
     
     self.collectionView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"woodback"]];
-
-    
-    
     
     UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(processDoubleTap:)];
     [doubleTap setNumberOfTapsRequired:2];
     [doubleTap setNumberOfTouchesRequired:1];
     [self.view addGestureRecognizer:doubleTap];
+    
 }
+
 
 -(void)deleteSection:(id)sender{
     NSLog(@"%lu", (unsigned long)[_sharedDelegate.headers count]);
@@ -260,7 +223,6 @@
         
         [self.collectionView deleteSections:set];
     }
-    
     
     
     
@@ -282,8 +244,66 @@
     
     [self.collectionView reloadData];
     
-    
 }
+
+-(void)setEditing:(BOOL)editing animated:(BOOL)animated{
+    
+    
+    [super setEditing:editing animated:animated];
+    NSIndexPath *newPath;
+    
+    if(editing == YES){
+        for(int d1 = 0; d1 < [_sharedDelegate.data count]; d1++){
+            for(int d2 = 0; d2 < [[_sharedDelegate.data objectAtIndex:d1] count]; d2++){
+                
+                newPath = [NSIndexPath indexPathForRow:d2 inSection:d1];
+                [self startWobble:newPath];
+                [_cellsToAnimate addObject:[self.collectionView cellForItemAtIndexPath:newPath]];
+                
+            }
+        }
+    } else if (editing == NO){
+        for(int d1 = 0; d1 < [_sharedDelegate.data count]; d1++){
+            for(int d2 = 0; d2 < [[_sharedDelegate.data objectAtIndex:d1] count]; d2++){
+                
+                newPath = [NSIndexPath indexPathForRow:d2 inSection:d1];
+                [self stopWobble:newPath];
+                [_cellsToAnimate removeObject:[self.collectionView cellForItemAtIndexPath:newPath]];
+            }
+            
+        }
+        
+    }
+}
+-(void)startWobble:(NSIndexPath*)index{
+    
+    
+    UICollectionViewCell *cellToAnimate = [self.collectionView cellForItemAtIndexPath:index];
+    
+    cellToAnimate.transform = CGAffineTransformRotate(CGAffineTransformIdentity, RADIANS(20));
+    [UIView animateWithDuration:0.25
+                          delay:0.0
+                        options:(UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse)
+                     animations:^ {
+                         cellToAnimate.transform = CGAffineTransformRotate(CGAffineTransformIdentity, RADIANS(-20));
+                     }completion:NULL];
+    
+    [_cellsToAnimate addObject:cellToAnimate];
+}
+
+-(void)stopWobble:(NSIndexPath *)index{
+    UICollectionViewCell *cellToAnimate = [self.collectionView cellForItemAtIndexPath:index];
+    
+    [UIView animateWithDuration:0.25
+                          delay:0.0
+                        options:(UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveLinear)
+                     animations:^ {
+                         cellToAnimate.transform = CGAffineTransformIdentity;
+                     }completion:NULL];
+    
+    [_cellsToAnimate removeObject:cellToAnimate];
+}
+
 
 -(instancetype)initWithCollectionViewLayout:(UICollectionViewLayout *)layout{
     self = [super initWithCollectionViewLayout:layout];
